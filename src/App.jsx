@@ -14,6 +14,8 @@ function App() {
   const [fontSize, setFontSize] = useState(
     localStorage.getItem("fontSize") || "text-base"
   );
+  // Loading
+  const [isLoading, setIsLoading] = useState(false);
 
   // 控制字體大小
   const handleFontSizeChange = (size) => {
@@ -23,25 +25,35 @@ function App() {
 
   // 搜尋
   const handleSearch = () => {
+    setIsLoading(true);
     fetch(`http://localhost:3000/api/news?keyword=${keyword}`)
       .then((r) => r.json())
       .then((obj) => {
         console.log(obj);
         setNews(obj);
+        setIsLoading(false);
       })
-      .catch(console.warn);
+      .catch((error) => {
+        console.warn(error);
+        setIsLoading(false);
+      });
   };
 
   // 首次渲染
   useEffect(() => {
+    setIsLoading(true);
     fetch(`http://localhost:3000/api/news?keyword=${keyword}`)
       .then((r) => r.json())
 
       .then((obj) => {
         console.log(obj);
         setNews(obj);
+        setIsLoading(false);
       })
-      .catch(console.warn);
+      .catch((error) => {
+        console.warn(error);
+        setIsLoading(false);
+      });
   }, []);
 
   return (
@@ -94,7 +106,9 @@ function App() {
         </div>
 
         <div className={`news-list ${fontSize}`}>
-          {news.length > 0 ? (
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : news.length > 0 ? (
             news.map((item, index) => (
               <NewsItem
                 key={index}
