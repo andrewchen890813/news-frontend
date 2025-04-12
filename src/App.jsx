@@ -23,10 +23,13 @@ function App() {
     localStorage.setItem("fontSize", size);
   };
 
+  // fetch(`http://localhost:3000/api/news?keyword=${keyword}`);
   // 搜尋
   const handleSearch = () => {
     setIsLoading(true);
-    fetch(`http://localhost:3000/api/news?keyword=${keyword}`)
+    fetch(
+      `https://us-central1-news-app-e6d68.cloudfunctions.net/api/news?keyword=${keyword}`
+    )
       .then((r) => r.json())
       .then((obj) => {
         console.log(obj);
@@ -42,7 +45,9 @@ function App() {
   // 首次渲染
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:3000/api/news?keyword=${keyword}`)
+    fetch(
+      `https://us-central1-news-app-e6d68.cloudfunctions.net/api/news?keyword=${keyword}`
+    )
       .then((r) => r.json())
 
       .then((obj) => {
