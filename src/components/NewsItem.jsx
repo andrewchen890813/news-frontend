@@ -24,7 +24,7 @@ const NewsItem = ({ title, content, date, sourceUrl }) => {
   return (
     <div
       className="max-w-4xl mx-auto p-3  border-gray-200 flex flex-col items-start 
-  hover:bg-gray-100  rounded-lg transition duration-200"
+  hover:bg-gray-100  rounded-lg transition duration-200   border-b border-gray-300 pb-4 mb-4"
     >
       {/* 標題變成連結 */}
       <div className="mb-2">
