@@ -60,6 +60,7 @@ const NewsItem = ({ title, content, date, sourceUrl }) => {
           />
         </div>
       )}
+      {/* 底線 */}
       <div className="absolute bottom-0 left-4 right-4 h-px bg-gray-300" />
     </div>
   );
