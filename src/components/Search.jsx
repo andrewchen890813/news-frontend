@@ -1,9 +1,9 @@
 const Search = ({
-  value,
-  onChange,
+  value = "",
+  onChange = () => {},
   placeholder = "輸入關鍵字搜尋新聞",
   className = "",
-  onSearch,
+  onSearch = () => {},
 }) => {
   return (
     <div className={`w-full max-w-xl mx-auto ${className}`}>

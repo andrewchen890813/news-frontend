@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const NewsItem = ({ title, content, date, sourceUrl }) => {
+  // 展開狀態
   const [isExpanded, setIsExpanded] = useState(false);
 
   // 解碼 HTML Entities 的工具函式

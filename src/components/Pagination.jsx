@@ -1,6 +1,10 @@
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
-function Pagination({ currentPage, totalPages, onPageChange }) {
+function Pagination({
+  currentPage = 0,
+  totalPages = 0,
+  onPageChange = () => {},
+}) {
   if (totalPages <= 1) return null;
 
   // 取得欲顯示的頁碼陣列
