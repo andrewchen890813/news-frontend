@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Search from "./components/Search";
 import Button from "./components/Button";
 import NewsItem from "./components/NewsItem";
+import Pagination from "./components/Pagination";
 
 function App() {
   // 關鍵字
@@ -23,6 +24,19 @@ function App() {
     localStorage.setItem("fontSize", size);
   };
 
+  // 每頁幾筆
+  const ITEMS_PER_PAGE = 10;
+  // 目前頁碼狀態
+  const [currentPage, setCurrentPage] = useState(1);
+  // 總頁數
+  const totalPages = Math.ceil(news.length / ITEMS_PER_PAGE);
+  //
+  const paginatedNews = news.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  // 本地後端
   // fetch(`http://localhost:3000/api/news?keyword=${keyword}`);
 
   // 搜尋
@@ -35,6 +49,7 @@ function App() {
       .then((obj) => {
         console.log(obj);
         setNews(obj);
+        setCurrentPage(1);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -115,7 +130,7 @@ function App() {
           {isLoading ? (
             <p>Loading...</p>
           ) : news.length > 0 ? (
-            news.map((item, index) => (
+            paginatedNews.map((item, index) => (
               <NewsItem
                 key={index}
                 title={item.標題}
@@ -128,6 +143,13 @@ function App() {
             <p>No news found</p>
           )}
         </div>
+        {!isLoading && totalPages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        )}
       </div>
     </div>
   );
