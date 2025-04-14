@@ -99,7 +99,7 @@ function App() {
                   : "bg-blue-200 text-black"
               }`}
             >
-              Small
+              小
             </Button>
 
             <Button
@@ -110,7 +110,7 @@ function App() {
                   : "bg-blue-200 text-black"
               }`}
             >
-              Medium
+              中
             </Button>
 
             <Button
@@ -121,7 +121,7 @@ function App() {
                   : "bg-blue-200 text-black"
               }`}
             >
-              Large
+              大
             </Button>
           </div>
         </div>
