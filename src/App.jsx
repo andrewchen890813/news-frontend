@@ -48,6 +48,9 @@ function App() {
       .then((r) => r.json())
       .then((obj) => {
         console.log(obj);
+        if (!Array.isArray(obj)) {
+          throw new Error("回傳資料不是陣列");
+        }
         setNews(obj);
         setCurrentPage(1);
         setIsLoading(false);
@@ -68,6 +71,9 @@ function App() {
 
       .then((obj) => {
         console.log(obj);
+        if (!Array.isArray(obj)) {
+          throw new Error("回傳資料不是陣列");
+        }
         setNews(obj);
         setIsLoading(false);
       })
